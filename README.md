@@ -1,16 +1,32 @@
-# e_commerce_application
+This Flutter application is a demonstration of navigation, CRUD operations, API integration, and responsive UI design.
 
-A new Flutter project.
+# Project Overview
+The app manages a list of items with titles and descriptions, featuring three main screens:
 
-## Getting Started
+1. Home Screen: Displays the list of items.
 
-This project is a starting point for a Flutter application.
+2. Item Detail Screen: Shows the details of a selected item.
 
-A few resources to get you started if this is your first Flutter project:
+3. Item Edit Screen: Allows adding or editing an item.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+4. Cart Screen: Enables managing items in the cart
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+# Setup Instructions
+
+1. Clone the Repository:
+git clone https://github.com/your_username/flutter-crud-app.git
+
+2. Navigate to Project Directory:
+cd flutter-crud-app
+
+3. Install Dependencies:
+flutter pub get
+
+4. Run the Application:
+flutter run
+
+# Usage
+Use the app to manage items efficiently:
+Navigate between screens.
+Perform CRUD operations on items.
+Observe responsive UI behaviors.
