@@ -1,20 +1,14 @@
-import 'dart:convert';
 
+import 'package:e_commerce_application/src/core/constants/strings.dart';
 import 'package:e_commerce_application/src/views/pages/add_item_page.dart';
-import 'package:e_commerce_application/src/controller/product_cubit/product_cubit.dart';
-import 'package:e_commerce_application/src/controller/products_cubit/products_cubit.dart';
+
 import 'package:e_commerce_application/src/core/helpers/snackbar_helper.dart';
-import 'package:e_commerce_application/src/core/network/apihelper.dart';
+
 import 'package:e_commerce_application/src/core/network/product_service.dart';
-import 'package:e_commerce_application/src/model/Products.dart';
-import 'package:e_commerce_application/src/model/ProductsModel.dart';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:http/http.dart' as http;
 
 import '../widgets/product_card.dart';
-import 'item_detail_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -44,7 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
         products = response;
       });
     } else {
-      showErrorMessage(context, message: "Something went wrong");
+      showErrorMessage(context, message: Strings.notFoundError);
     }
   }
 
@@ -68,7 +62,7 @@ class _HomeScreenState extends State<HomeScreen> {
               visible: products.isNotEmpty,
               replacement: Center(
                 child: Text(
-                  "No product found",
+                  Strings.noProductFoundError,
                   style: Theme.of(context).textTheme.headline3,
                 ),
               ),
@@ -97,9 +91,9 @@ class _HomeScreenState extends State<HomeScreen> {
       setState(() {
         products = filtered;
       });
-      showSuccessMessage(context, message: "Item deleted successfully");
+      showSuccessMessage(context, message: Strings.itemDeletedMsg);
     } else {
-      showErrorMessage(context, message: "Unable to delete");
+      showErrorMessage(context, message: Strings.itemDeleteErrorMsg);
     }
   }
 }

@@ -1,13 +1,11 @@
-import 'dart:convert';
 
 
+import 'package:e_commerce_application/src/core/constants/strings.dart';
 import 'package:e_commerce_application/src/core/helpers/snackbar_helper.dart';
 import 'package:e_commerce_application/src/core/helpers/validation_helper.dart';
 import 'package:e_commerce_application/src/core/network/product_service.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 
-import 'home_screen.dart';
 
 class AddItemPage extends StatefulWidget {
   final Map? product;
@@ -52,7 +50,7 @@ class _AddItemPageState extends State<AddItemPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(isEdit? "Edit item" : "Add new item"),
+        title: Text(isEdit? Strings.editPageTitle : Strings.addPageTitle),
       ),
       body: Form(
         key: formKey,
@@ -64,18 +62,15 @@ class _AddItemPageState extends State<AddItemPage> {
               TextFormField(
                 controller: productNameController,
                 validator: ValidationHelper.checkIsNullOrEmpty,
-                decoration: InputDecoration(labelText: "Enter new item name"),
+                decoration: InputDecoration(labelText: Strings.newProductFieldHint),
               ),
               SizedBox(height: 20),
-              // TextFormField(
-              //   controller: priceController,
-              //   decoration: InputDecoration(labelText: "Enter price"),
-              // ),
+
               TextFormField(
                 controller: descriptionController,
                 validator: ValidationHelper.validateDescription,
                 decoration:
-                    InputDecoration(labelText: "Enter product description"),
+                    InputDecoration(labelText: Strings.newProductDescriptionHint),
                 keyboardType: TextInputType.multiline,
                 minLines: 5,
                 maxLines: 8,
@@ -92,7 +87,7 @@ class _AddItemPageState extends State<AddItemPage> {
 
 
               },
-                  child: Text(isEdit? "Update item" : "Add item")),
+                  child: Text(isEdit? Strings.updateTxtBtn : Strings.addTxtBtn)),
             ],
           ),
         ),
@@ -104,7 +99,7 @@ class _AddItemPageState extends State<AddItemPage> {
 
     final product = widget.product;
     if(product == null){
-      showErrorMessage(context, message:"You cannot call updated without adding data");
+      showErrorMessage(context, message: Strings.dataNotFoundToUpdateError );
       return;
     }
 
@@ -125,11 +120,11 @@ class _AddItemPageState extends State<AddItemPage> {
 
     if(isSuccess){
 
-      showSuccessMessage(context, message:"Update success");
+      showSuccessMessage(context, message: Strings.updateSuccessMsg);
       Navigator.pop(context);
 
     }else{
-      showErrorMessage(context, message:"Not able to update");
+      showErrorMessage(context, message: Strings.updateErrorMsg);
     }
   }
 
@@ -149,11 +144,11 @@ class _AddItemPageState extends State<AddItemPage> {
       productNameController.text = '';
       descriptionController.text = '';
 
-      showSuccessMessage(context, message:"Item created");
+      showSuccessMessage(context, message:Strings.itemCreatedMsg);
       Navigator.pop(context);
 
     }else{
-      showErrorMessage(context, message:"Item not created");
+      showErrorMessage(context, message:Strings.itemNotCreatedMsg);
     }
   }
 

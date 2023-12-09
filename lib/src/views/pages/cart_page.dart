@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:e_commerce_application/src/core/constants/strings.dart';
 import 'package:e_commerce_application/src/core/helpers/snackbar_helper.dart';
 import 'package:flutter/material.dart';
 
@@ -51,7 +52,7 @@ class _CartPageState extends State<CartPage> {
 
       print(cartItems.length);
     } else {
-      showErrorMessage(context, message: "Response is not found");
+      showErrorMessage(context, message: Strings.responseNotFoundMsg);
     }
   }
 
@@ -59,7 +60,7 @@ class _CartPageState extends State<CartPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Cart page"),
+        title: Text(Strings.cartPageTitle),
       ),
       floatingActionButton: FloatingActionButton(
           child: Icon(Icons.add),
@@ -74,7 +75,7 @@ class _CartPageState extends State<CartPage> {
               visible: cartItems.isNotEmpty,
               replacement: Center(
                 child: Text(
-                  "Cart is empty",
+                  Strings.emptyCartMsg,
                   style: Theme.of(context).textTheme.headline3,
                 ),
               ),
@@ -90,22 +91,11 @@ class _CartPageState extends State<CartPage> {
                                   product: cartItem, isFromCart: true))).then((value) => fetchData());
                         },
                         title: Text(cartItem['title']),
-                        subtitle: Text(cartItem['description']),
-                        trailing: PopupMenuButton(
-                          onSelected: (value) {
-                            if (value == 'delete') {
+                        subtitle: Text(cartItem['description']), //
+                        trailing: IconButton(
+                            onPressed: (){
                               updateAddCartStatus(id, cartItem);
-                            }
-                          },
-                          itemBuilder: (context) {
-                            return [
-                              PopupMenuItem(
-                                child: Text("Remove from cart"),
-                                value: 'delete',
-                              ),
-                            ];
-                          },
-                        ),
+                            }, icon: Icon(Icons.delete, color: Colors.red,))
                       );
                     }),
 
@@ -127,11 +117,11 @@ class _CartPageState extends State<CartPage> {
         body: jsonEncode(body), headers: {'Content-Type': 'application/json'});
 
     if (response.statusCode == 200) {
-      showSuccessMessage(context, message: "Item removed from cart");
+      showSuccessMessage(context, message: Strings.removeItemSuccessMsg);
       Navigator.of(context)
           .push(MaterialPageRoute(builder: (context) => HomeScreen()));
     } else {
-      showErrorMessage(context, message: "Not able to remove item from cart");
+      showErrorMessage(context, message: Strings.removeItemUnsuccessMsg);
     }
   }
 }

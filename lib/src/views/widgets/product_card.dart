@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../core/constants/strings.dart';
 import '../pages/add_item_page.dart';
 import '../pages/item_detail_screen.dart';
 
@@ -35,16 +36,16 @@ class ProductCard extends StatelessWidget {
             itemBuilder: (context) {
               return [
                 PopupMenuItem(
-                  child: Text("Edit"),
+                  child: Text(Strings.editOption),
                   value: 'edit',
                 ),
                 PopupMenuItem(
-                  child: Text("Delete"),
+                  child: Text(Strings.deleteOption),
                   value: 'delete',
                 ),
               ];
             },
           ),
-        ));;
+        ));
   }
 }

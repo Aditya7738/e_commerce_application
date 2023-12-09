@@ -3,11 +3,11 @@ import 'dart:convert';
 import 'package:e_commerce_application/src/core/helpers/snackbar_helper.dart';
 import 'package:flutter/material.dart';
 
+import '../../core/constants/strings.dart';
 import 'cart_page.dart';
 
 import 'package:http/http.dart' as http;
 
-import 'home_screen.dart';
 
 class ItemDetailScreen extends StatefulWidget {
   final Map? product;
@@ -53,7 +53,7 @@ class _ItemDetailScreenState extends State<ItemDetailScreen> {
                           onPressed: (){
                             isFromCart ?  removeProductFromCart(product['_id'], product) : addItemToCart(product);
                           },
-                          child: Text(isFromCart ? "Remove from cart" : "Add to cart")),
+                          child: Text(isFromCart ? Strings.removeBtnTxt : Strings.addBtnTxt)),
 
                   ]
               ),
@@ -88,13 +88,13 @@ class _ItemDetailScreenState extends State<ItemDetailScreen> {
 
     if(response.statusCode == 200){
 
-      showSuccessMessage(context, message:"Item added to cart");
+      showSuccessMessage(context, message: Strings.addItemSuccessMsg);
       Navigator.of(context)
           .push(MaterialPageRoute(
           builder: (context) => CartPage()));
 
     }else{
-      showErrorMessage(context, message:"Not able add Item to the cart");
+      showErrorMessage(context, message: Strings.addItemUnsuccessMsg);
     }
   }
 
@@ -113,11 +113,11 @@ class _ItemDetailScreenState extends State<ItemDetailScreen> {
 
     if(response.statusCode == 200){
 
-      showSuccessMessage(context, message:"Item removed from cart");
+      showSuccessMessage(context, message:Strings.removeItemSuccessMsg);
       Navigator.pop(context);
 
     }else{
-      showErrorMessage(context, message:"Not able to remove item from cart");
+      showErrorMessage(context, message:Strings.removeItemUnsuccessMsg);
     }
   }
 
