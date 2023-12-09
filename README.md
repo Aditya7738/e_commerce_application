@@ -14,10 +14,10 @@ The app manages a list of items with titles and descriptions, featuring three ma
 # Setup Instructions
 
 1. Clone the Repository:
-git clone https://github.com/your_username/flutter-crud-app.git
+git clone https://github.com/Aditya7738/e_commerce_application.git
 
 2. Navigate to Project Directory:
-cd flutter-crud-app
+cd e_commerce_application
 
 3. Install Dependencies:
 flutter pub get
